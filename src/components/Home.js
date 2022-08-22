@@ -5,7 +5,10 @@ function Home() {
   const [posts,setPosts]= useState([]);
 
   useEffect(()=> {
-    firestore.collection('posts').get().then((snapshot)=>{
+    firestore
+    .collection('posts')
+    .get()
+    .then((snapshot)=>{
       const posts=snapshot.docs.map((doc)=> {
         return {
           id:doc.id,
