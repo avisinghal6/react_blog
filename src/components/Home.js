@@ -1,6 +1,22 @@
 import {useEffect, useState} from 'react';
 import {firestore} from '../firebase';
 import {Link} from 'react-router-dom';
+import styled from 'styled-components'; // for writing css code inside javascript
+
+const PostSubTitle= styled.h1`
+  font-size: 13px;
+`;
+// the first letter of the variable needs to be capital otherwise styled does not work.
+const BlogHeading= styled.h1`
+  text-align: center;
+  color: #2196f3;
+  margin-bottom: 2px;
+`; // `` is called the string template literal, we can write css code inside these template literals.
+//the  `` literals are a way of accepting arguments to the h1(in this case) function. Then styled.h1`` will
+// return a new react component which can be directly used as any other react component as shown below.
+// by inspecting the source code, it can be seen that a new class is created for the css similar to css modules.
+// with the css content inside styles tag in the head tag.
+
 function Home() {
   const [posts,setPosts]= useState([]);
 
@@ -21,7 +37,7 @@ function Home() {
     })
   },[]);
     return <div className="home">
-      <h1> Tech Blog</h1>
+      <BlogHeading> Tech Blog</BlogHeading>
       <div id="blog"> Avi</div>
 
       {
@@ -31,7 +47,7 @@ function Home() {
               <h3>{post.title}</h3>
             </Link>
 
-            <p> {post.subTitle}</p>
+            <PostSubTitle> {post.subTitle}</PostSubTitle>
             </div>
         ))
       }
@@ -41,3 +57,9 @@ function Home() {
   
   export default Home;
   
+  const styles={
+    heading:{
+      marginTop: 30,
+      fontSize:57
+    }
+  };
