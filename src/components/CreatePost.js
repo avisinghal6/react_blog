@@ -1,6 +1,25 @@
 //import {useState} from 'react';
 import {firestore} from '../firebase';
 import {useFormInput} from '../hooks';
+import styled, {css} from 'styled-components';
+
+const StyledButton= styled.button`
+height: 33px;
+  background: ${(props) => props.primary ? '#4caf50': 'blue'};
+  border: 0;
+  color: #fff;
+  padding: 8px;
+  font-size: 15px;
+  border-radius: 3px;
+  cursor: pointer;
+  ${(props) => props.primary && css`
+    border: 4px solid red;  
+  ` };
+`;
+
+//to add dynamic behavior the above code is used, now the background changes according to primary attribute.
+// when the StyledButton component is called, the props (primary) is passed and then action decided.
+//If we want to add multiple styles dynamically, then we need to import and use "css" as shown above.
 function CreatePost() {
 
   const title=useFormInput('');
@@ -41,7 +60,8 @@ function CreatePost() {
               <textarea {...content}></textarea>
             </div>
 
-            <button className="create-post-btn"> Create Post</button>
+            <StyledButton primary > Create Post</StyledButton> 
+            {/* added the primary attribute */}
           </form>
       </div>
     );
