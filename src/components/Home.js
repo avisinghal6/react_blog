@@ -17,6 +17,30 @@ const BlogHeading= styled.h1`
 // by inspecting the source code, it can be seen that a new class is created for the css similar to css modules.
 // with the css content inside styles tag in the head tag.
 
+
+const Post= styled.div`
+  border: 1px solid #e1e1e1;
+  padding: 10px 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+
+  &:hover {
+    border: 1px solid #2196f3
+  }
+  h3 {
+    margin: 0;
+    padding: 0;
+    font-size: 25px;
+    font-weight: bold;
+    color: black;
+  }
+
+  a {
+    text-decoration:none;
+  }
+`;
+
+//nesting the h3 tag
 function Home() {
   const [posts,setPosts]= useState([]);
 
@@ -42,13 +66,13 @@ function Home() {
 
       {
         posts.map((post,index) => (
-          <div className="post" key={`post-${index}`}>
+          <Post className="post" key={`post-${index}`}>
             <Link to={`/post/${post.id}`}>
               <h3>{post.title}</h3>
             </Link>
 
             <PostSubTitle> {post.subTitle}</PostSubTitle>
-            </div>
+            </Post>
         ))
       }
     </div>
